@@ -1,8 +1,6 @@
 // url的链接
 export const urls: object = {
-  // login: "login",
-  
-
+  showData: "/index/list",
 };
 
 export default urls;

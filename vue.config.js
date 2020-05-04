@@ -53,8 +53,8 @@ module.exports = {
   // webpack-dev-server 相关配置
   devServer: {
     open: process.platform === "darwin",
-    host: "localhost",
-    port: 3001, //8080,
+    host: "192.168.31.27",
+    port: 9000, //8080,
     https: false,
     hotOnly: false,
     proxy: {
@@ -62,7 +62,7 @@ module.exports = {
       // proxy all requests starting with /api to jsonplaceholder
       "/api": {
         // target: "https://emm.cmccbigdata.com:8443/",
-        target: "http://localhost:3000/",
+        target: "http://192.168.31.27:9000/",
         // target: "http://47.106.136.114/",
         changeOrigin: true,
         ws: true,

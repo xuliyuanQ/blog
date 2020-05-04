@@ -2,8 +2,66 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import service from "./utils/https";
+import urls from "./utils/urls";
+import tinymce from 'tinymce';
+import 'tinymce/themes/mobile/theme';
+import 'tinymce/plugins/image';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/code';
+import 'tinymce/plugins/lists';
+import 'tinymce/plugins/contextmenu';
+import 'tinymce/plugins/wordcount';
+import 'tinymce/plugins/colorpicker';
+import 'tinymce/plugins/textcolor';
 
+import {
+  Dialog,
+  Form,
+  FormItem,
+  Input,
+  Button,
+  Message,
+  Menu,
+  MenuItem,
+  Row,
+  Col,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Loading,
+  Timeline,
+  TimelineItem,
+  Card,
+  Tag
+} from "element-ui";
+import CollapseTransition from "element-ui/lib/transitions/collapse-transition";
+// 按需引用 element 组件
+Vue.component(Dialog.name, Dialog);
+Vue.component(Form.name, Form);
+Vue.component(FormItem.name, FormItem);
+Vue.component(Input.name, Input);
+Vue.component(Button.name, Button);
+Vue.component(Message.name, Message);
+Vue.component(Menu.name, Menu);
+Vue.component(MenuItem.name, MenuItem);
+Vue.component(Row.name, Row);
+Vue.component(Col.name, Col);
+Vue.component(Dropdown.name, Dropdown);
+Vue.component(DropdownMenu.name, DropdownMenu);
+Vue.component(DropdownItem.name, DropdownItem);
+Vue.component(CollapseTransition.name, CollapseTransition);
+Vue.component(Timeline.name, Timeline);
+Vue.component(TimelineItem.name, TimelineItem);
+Vue.component(Card.name, Card);
+Vue.component(Tag.name, Tag);
+Vue.use(Loading.directive);
 Vue.config.productionTip = false;
+Vue.prototype.$message = Message;
+Vue.prototype.$loading = Loading.service;
+Vue.prototype.$https = service; // 其他页面在使用 axios 的时候直接  this.$http 就可以了
+Vue.prototype.$urls = urls; // 其他页面在使用 URLS 的时候直接  this.$urls 就可以了
+Vue.prototype.$tinymce = tinymce;
 
 new Vue({
   router,

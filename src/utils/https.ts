@@ -12,7 +12,7 @@ let service: AxiosInstance | any;
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "development") {
   service = axios.create({
-    baseURL: "/api", // api 的 base_url
+    baseURL: "http://192.168.31.123:9000", // api 的 base_url
     timeout: 50000 // 请求超时时间
   });
 } else {
