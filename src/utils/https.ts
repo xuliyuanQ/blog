@@ -2,8 +2,9 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { Message } from "element-ui";
 
 export interface ResponseData {
+  success: boolean;
   code: number;
-  data?: any;
+  content?: any;
   message: string;
 }
 
@@ -42,8 +43,8 @@ service.interceptors.response.use(
     // code == 0: success
     if (res.status === 200) {
       const data: ResponseData = res.data
-      if (data.code === 0) {
-        return data.data;
+      if (data.success) {
+        return data.content;
       } else {
         Message({
           message: data.message,
