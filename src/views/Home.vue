@@ -1,21 +1,26 @@
 <template>
   <div class="home">
-    <canvas></canvas>
-    <div class="desktop">
-      <div class="menuBtn">
-        <el-button @click="showMenu">
-          <i class="el-icon-menu el-icon--left"></i>
-          <span>MENU</span>
-        </el-button>
-      </div>
-      <transition name="fade">
-        <div class="menu" v-if="show">
-          <p>hello</p>
+    <div class="firstPage">
+      <canvas></canvas>
+      <div class="desktop">
+        <div class="menuBtn">
+          <el-button @click="showMenu">
+            <i class="el-icon-menu el-icon--left"></i>
+            <span>MENU</span>
+          </el-button>
         </div>
-      </transition>
-      <div class="arrowDown">
-        <i class="el-icon-arrow-down"></i>
+        <transition name="fade">
+          <div class="menu" v-if="show">
+            <p>hello</p>
+          </div>
+        </transition>
+        <div class="arrowDown" @click="nextPage">
+          <i class="el-icon-arrow-down"></i>
+        </div>
       </div>
+    </div>
+    <div class="secondPage">
+      <div class="content">geriogjieorg</div>
     </div>
   </div>
 </template>
@@ -34,7 +39,7 @@ export default class Home extends Vue {
     canvas.height = innerHeight;
     canvas.width = innerWidth;
 
-    document.documentElement.style.overflow = "hidden";
+    // document.documentElement.style.overflow = "hidden";
 
     // Declarations --------------------
     var mouse: any = {
@@ -197,7 +202,10 @@ export default class Home extends Vue {
   }
   private show: boolean = false;
   private showMenu(): void {
-    this.show = !this.show;
+    this.show = true;
+  }
+  private nextPage(): void {
+    window.scrollTo(0, document.documentElement.clientHeight);
   }
 }
 </script>
@@ -210,78 +218,89 @@ body {
   color: #fefefe;
   padding: 0;
   margin: 0;
-  .desktop {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    .menuBtn {
-      position: fixed;
-      top: 30px;
-      left: 30px;
-      ::v-deep .el-button {
-        color: #f2f2f2;
-        background-color: #222222;
-        padding: 12px 30px;
-        .el-icon--left {
-          margin-left: -15px;
-          span {
-            margin-left: 15px;
-            font-size: 20px;
+  .firstPage {
+    position: relative;
+    height: 100vh;
+    .desktop {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      .menuBtn {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        ::v-deep .el-button {
+          color: #f2f2f2;
+          background-color: #222222;
+          padding: 12px 30px;
+          .el-icon--left {
+            margin-left: -15px;
+            span {
+              margin-left: 15px;
+              font-size: 20px;
+            }
           }
         }
       }
-    }
-    .menu {
-      width: 350px;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: 1px solid red;
-    }
-    .fade-enter {
-      transform: translateX(-350px);
-    }
-    .fade-enter-active {
-      transition: all 0.4s ease;
-    }
-    .arrowDown {
-      position: absolute;
-      bottom: 50px;
-      left: 0px;
-      right: 0px;
-      -webkit-animation: arrowDown-animation 1.5s linear infinite;
-      animation: arrowDown-animation 1.5s linear infinite;
-      .el-icon-arrow-down {
-        font-size: 50px;
-        color: #fefefe;
+      .menu {
+        width: 350px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid red;
+      }
+      .fade-enter {
+        transform: translateX(-350px);
+      }
+      .fade-enter-active {
+        transition: all 0.4s ease;
+      }
+      .arrowDown {
+        position: absolute;
+        bottom: 50px;
+        left: 0px;
+        right: 0px;
+        -webkit-animation: arrowDown-animation 1.5s linear infinite;
+        animation: arrowDown-animation 1.5s linear infinite;
+        .el-icon-arrow-down {
+          font-size: 50px;
+          color: #fefefe;
+        }
+      }
+      @-webkit-keyframes arrowDown-animation {
+        25% {
+          -webkit-transform: translateY(10px);
+        }
+        50%,
+        100% {
+          -webkit-transform: translateY(0);
+        }
+        75% {
+          -webkit-transform: translateY(-10px);
+        }
+      }
+      @keyframes arrowDown-animation {
+        25% {
+          transform: translateY(10px);
+        }
+        50%,
+        100% {
+          transform: translateY(0);
+        }
+        75% {
+          transform: translateY(-10px);
+        }
       }
     }
-    @-webkit-keyframes arrowDown-animation {
-      25% {
-        -webkit-transform: translateY(10px);
-      }
-      50%,
-      100% {
-        -webkit-transform: translateY(0);
-      }
-      75% {
-        -webkit-transform: translateY(-10px);
-      }
-    }
-    @keyframes arrowDown-animation {
-      25% {
-        transform: translateY(10px);
-      }
-      50%,
-      100% {
-        transform: translateY(0);
-      }
-      75% {
-        transform: translateY(-10px);
-      }
+  }
+  .secondPage {
+    .content {
+      width: 100%;
+      height: 50px;
+      border: 1px solid redÎ;
     }
   }
 }
