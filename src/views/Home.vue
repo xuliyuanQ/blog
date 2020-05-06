@@ -121,7 +121,7 @@ export default class Home extends Vue {
     var bubbles = [];
     var minibubbles = [];
     var timer = 0;
-    var spawnRate = 99;
+    var spawnRate = 150;
 
     function init() {
       bubbles = [];

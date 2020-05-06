@@ -3,14 +3,15 @@ const sourceMap = process.env.NODE_ENV === "development";
 
 module.exports = {
   // 基本路径
-  publicPath: "./",
+  publicPath: "/",
   // 输出文件目录
   outputDir: "dist",
+  assetsDir: 'static', // 静态资源目录 (js, css, img, fonts)
   // eslint-loader 是否在保存的时候检查
   lintOnSave: false,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-  chainWebpack: () => {},
+  chainWebpack: () => { },
   configureWebpack: config => {
     if (process.env.NODE_ENV === "production") {
       // 为生产环境修改配置...
@@ -53,25 +54,26 @@ module.exports = {
   // webpack-dev-server 相关配置
   devServer: {
     open: process.platform === "darwin",
-    host: "192.168.31.27",
-    port: 9000, //8080,
+    host: "0.0.0.0",
+    port: 19800, //8080,
     https: false,
     hotOnly: false,
-    proxy: {
-      // 设置代理
-      // proxy all requests starting with /api to jsonplaceholder
-      "/api": {
-        // target: "https://emm.cmccbigdata.com:8443/",
-        target: "http://192.168.31.27:9000/",
-        // target: "http://47.106.136.114/",
-        changeOrigin: true,
-        ws: true,
-        pathRewrite: {
-          "^/api": ""
-        }
-      }
-    },
-    before: app => {}
+    proxy: null,
+    // proxy: {
+    //   // 设置代理
+    //   // proxy all requests starting with /api to jsonplaceholder
+    //   "/api": {
+    //     // target: "https://emm.cmccbigdata.com:8443/",
+    //     target: "http://192.168.31.27:19800/",
+    //     // target: "http://47.106.136.114/",
+    //     changeOrigin: true,
+    //     ws: true,
+    //     pathRewrite: {
+    //       "^/api": ""
+    //     }
+    //   }
+    // },
+    before: app => { }
   },
   // 第三方插件配置
   pluginOptions: {
